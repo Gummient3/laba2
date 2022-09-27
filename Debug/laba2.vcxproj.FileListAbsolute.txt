@@ -1,0 +1,4 @@
+C:\Users\rikud\source\repos\laba2\Debug\laba2.vcxproj.AssemblyReference.cache
+C:\Users\rikud\source\repos\laba2\Debug\laba2.exe
+C:\Users\rikud\source\repos\laba2\Debug\laba2.FFirst.resources
+C:\Users\rikud\source\repos\laba2\Debug\laba2.vcxproj.GenerateResource.cache
