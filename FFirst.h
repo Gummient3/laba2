@@ -28,6 +28,15 @@ namespace CppCLRWinformsProjekt {
 		/// <summary>
 		/// Verwendete Ressourcen bereinigen.
 		/// </summary>
+		/// 
+		
+		//bool commaFunc(String str) {
+			//if (str[0] == ',') {
+				//this->txt1->Text = "0, "->ToString + str;
+			//}
+
+		//}
+
 		~Form1()
 		{
 			if (components)
@@ -143,7 +152,7 @@ namespace CppCLRWinformsProjekt {
 			this->txt1->Size = System::Drawing::Size(90, 20);
 			this->txt1->TabIndex = 4;
 			this->txt1->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
-			this->txt1->TextChanged += gcnew System::EventHandler(this, &Form1::txt1_TextChanged);
+			this->txt1->TextChanged += gcnew System::EventHandler(this, &Form1::lbl2_Click);
 			this->txt1->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Form1::txt1_KeyPress);
 			// 
 			// lbl1
@@ -309,6 +318,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 	}
 
 }
+
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
 		double i1, i2;
@@ -317,7 +327,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		i1 = Convert::ToDouble(txt1->Text);
 		i2 = Convert::ToDouble(txt2->Text);
 		// i3 = i1 + i2;
-		this->txtResult->Text = Convert::ToString(i1 / i2);
+		this->txtResult->Text = Convert::ToString(i1/i2);
 
 	}
 	catch (...) {
@@ -345,18 +355,81 @@ private: System::Void BtnMin_Click(System::Object^ sender, System::EventArgs^ e)
 
 	}
 	
-}
+} /*
+  int comp_11(String^ s) {
+		   int counter = 0;
+		   for (int x = 0; x < s.Length; x++) {
+			   if (s[x] == ',') { counter++; }
+			}
+		   return counter;
+	   }
+  */
+	   
+
 private: System::Void txt1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // первое окно
 	
-	if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8 && e->KeyChar != 44)
+	if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8)
 	{
 		e->Handled = true;
 	}
+	if (e->KeyChar == ',' && this->txt1->TextLength == 0) {
+		this->txt1->Text = "0,";
+		txt1->SelectionStart = txt1->Text->Length;
+	}
+	if (e->KeyChar == ',') {
+		String^ s = this->txt1->Text->ToString();
+		int counter = 0;
+		for (int x = 0; x < this->txt1->TextLength; x++) {
+			if (s[x] == ',') { counter++; }
+		}
+		if (counter < 1) {
+			this->txt1->Text += ",";
+		}
+		txt1->SelectionStart = txt1->Text->Length;
+	}
+	if (e->KeyChar == 45 && this->txt1->TextLength == 0) {
+		String^ s = this->txt1->Text->ToString();
+		int counter = 0;
+		for (int x = 0; x < this->txt1->TextLength; x++) {
+			if (s[x] == '-') { counter++; }
+		}
+		if (counter < 1) {
+			this->txt1->Text += "-";
+		}
+		txt1->SelectionStart = txt1->Text->Length;
+	}
 }
-private: System::Void txt2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // второе окно
-	if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8 && e->KeyChar != 44)
+private: System::Void txt2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // первое окно
+
+	if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8)
 	{
 		e->Handled = true;
+	}
+	if (e->KeyChar == ',' && this->txt2->TextLength == 0) {
+		this->txt2->Text = "0,";
+		txt2->SelectionStart = txt2->Text->Length;
+	}
+	if (e->KeyChar == ',') {
+		String^ s = this->txt2->Text->ToString();
+		int counter = 0;
+		for (int x = 0; x < this->txt2->TextLength; x++) {
+			if (s[x] == ',') { counter++; }
+		}
+		if (counter < 1) {
+			this->txt2->Text += ",";
+		}
+		txt2->SelectionStart = txt2->Text->Length;
+	}
+	if (e->KeyChar == 45 && this->txt2->TextLength == 0) {
+		String^ s = this->txt2->Text->ToString();
+		int counter = 0;
+		for (int x = 0; x < this->txt2->TextLength; x++) {
+			if (s[x] == '-') { counter++; }
+		}
+		if (counter < 1) {
+			this->txt2->Text += "-";
+		}
+		txt2->SelectionStart = txt2->Text->Length;
 	}
 }
 private: System::Void txtResult_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // третье окно
@@ -364,8 +437,18 @@ private: System::Void txtResult_KeyPress(System::Object^ sender, System::Windows
 	{
 		e->Handled = true;
 	}
+	
 }
-private: System::Void txt1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
+
 };
 }
+
+//
+//
+//if (!(this->txt1->Text->Contains(","))) {
+//		this->txt1->Text += ",";
+//
+//	}
+//
+//
+//
