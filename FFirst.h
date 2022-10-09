@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 
 namespace CppCLRWinformsProjekt {
 
@@ -319,6 +320,8 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 
 }
 
+
+
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
 		double i1, i2;
@@ -327,8 +330,14 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		i1 = Convert::ToDouble(txt1->Text);
 		i2 = Convert::ToDouble(txt2->Text);
 		// i3 = i1 + i2;
-		this->txtResult->Text = Convert::ToString(i1/i2);
+		if (i2 != 0) {
+			this->txtResult->Text = Convert::ToString((round((i1 / i2) * 100000)) / 100000);
 
+		}
+		else {
+			this->txtResult->Text = "Ошибка";
+		}
+		
 	}
 	catch (...) {
 
