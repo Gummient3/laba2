@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 
+
 namespace CppCLRWinformsProjekt {
 
 	using namespace System;
@@ -11,9 +12,7 @@ namespace CppCLRWinformsProjekt {
 	using namespace System::Drawing;
 	using namespace std;
 
-	/// <summary>
-	/// Zusammenfassung fьr Form1
-	/// </summary>
+
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
 	public:
@@ -283,6 +282,7 @@ namespace CppCLRWinformsProjekt {
 			double i1, i2;
 			// int i3;
 			this->lblOper->Text = L"Сложение";
+			this->txtResult->Clear();
 			i1 = Convert::ToDouble(txt1->Text);
 			i2 = Convert::ToDouble(txt2->Text);
 			// i3 = i1 + i2;
@@ -308,6 +308,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 		double i1, i2;
 		// int i3;
 		this->lblOper->Text = L"Умножение";
+		this->txtResult->Clear();
 		i1 = Convert::ToDouble(txt1->Text);
 		i2 = Convert::ToDouble(txt2->Text);
 		// i3 = i1 + i2;
@@ -327,6 +328,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		double i1, i2;
 		// int i3;
 		this->lblOper->Text = L"Деление";
+		this->txtResult->Clear();
 		i1 = Convert::ToDouble(txt1->Text);
 		i2 = Convert::ToDouble(txt2->Text);
 		// i3 = i1 + i2;
@@ -355,6 +357,7 @@ private: System::Void BtnMin_Click(System::Object^ sender, System::EventArgs^ e)
 		double i1, i2;
 		// int i3;
 		this->lblOper->Text = L"Вычитание";
+		this->txtResult->Clear();
 		i1 = Convert::ToDouble(txt1->Text);
 		i2 = Convert::ToDouble(txt2->Text);
 		// i3 = i1 + i2;
