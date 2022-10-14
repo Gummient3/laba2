@@ -16,6 +16,47 @@ namespace CppCLRWinformsProjekt {
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
 	public:
+
+	
+		void formatfunc(System::Windows::Forms::KeyPressEventArgs^ e, System::Windows::Forms::TextBox^ txt) {
+
+			if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8)
+			{
+				e->Handled = true;
+			}
+			if (e->KeyChar == ',' && txt->TextLength == 0) {
+				txt->Text = "0,";
+				txt->SelectionStart = txt->Text->Length;
+			}
+			if (e->KeyChar == ',') {
+				String^ s = txt->Text->ToString();
+				int counter = 0;
+				for (int x = 0; x < txt->TextLength; x++) {
+					if (s[x] == ',') { counter++; }
+				}
+				if (counter < 1) {
+					txt->Text += ",";
+				}
+				txt->SelectionStart = txt->Text->Length;
+				
+			}
+			if (e->KeyChar == 45 && txt->TextLength == 0) {
+				String^ s = txt->Text->ToString();
+				int counter = 0;
+				for (int x = 0; x < txt->TextLength; x++) {
+					if (s[x] == '-') { counter++; }
+				}
+				if (counter < 1) {
+					txt->Text += "-";
+				}
+				txt->SelectionStart = txt->Text->Length;
+			}
+
+
+		}
+
+
+
 		Form1(void)
 		{
 			InitializeComponent();
@@ -229,7 +270,7 @@ namespace CppCLRWinformsProjekt {
 			// 
 			// BtnSub
 			// 
-			this->BtnSub->Location = System::Drawing::Point(240, 51);
+			this->BtnSub->Location = System::Drawing::Point(240, 50);
 			this->BtnSub->Name = L"BtnSub";
 			this->BtnSub->Size = System::Drawing::Size(100, 30);
 			this->BtnSub->TabIndex = 15;
@@ -379,70 +420,13 @@ private: System::Void BtnMin_Click(System::Object^ sender, System::EventArgs^ e)
 	   
 
 private: System::Void txt1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // первое окно
+	formatfunc(e, this->txt1);
 	
-	if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8)
-	{
-		e->Handled = true;
-	}
-	if (e->KeyChar == ',' && this->txt1->TextLength == 0) {
-		this->txt1->Text = "0,";
-		txt1->SelectionStart = txt1->Text->Length;
-	}
-	if (e->KeyChar == ',') {
-		String^ s = this->txt1->Text->ToString();
-		int counter = 0;
-		for (int x = 0; x < this->txt1->TextLength; x++) {
-			if (s[x] == ',') { counter++; }
-		}
-		if (counter < 1) {
-			this->txt1->Text += ",";
-		}
-		txt1->SelectionStart = txt1->Text->Length;
-	}
-	if (e->KeyChar == 45 && this->txt1->TextLength == 0) {
-		String^ s = this->txt1->Text->ToString();
-		int counter = 0;
-		for (int x = 0; x < this->txt1->TextLength; x++) {
-			if (s[x] == '-') { counter++; }
-		}
-		if (counter < 1) {
-			this->txt1->Text += "-";
-		}
-		txt1->SelectionStart = txt1->Text->Length;
-	}
+	
 }
 private: System::Void txt2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // первое окно
 
-	if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8)
-	{
-		e->Handled = true;
-	}
-	if (e->KeyChar == ',' && this->txt2->TextLength == 0) {
-		this->txt2->Text = "0,";
-		txt2->SelectionStart = txt2->Text->Length;
-	}
-	if (e->KeyChar == ',') {
-		String^ s = this->txt2->Text->ToString();
-		int counter = 0;
-		for (int x = 0; x < this->txt2->TextLength; x++) {
-			if (s[x] == ',') { counter++; }
-		}
-		if (counter < 1) {
-			this->txt2->Text += ",";
-		}
-		txt2->SelectionStart = txt2->Text->Length;
-	}
-	if (e->KeyChar == 45 && this->txt2->TextLength == 0) {
-		String^ s = this->txt2->Text->ToString();
-		int counter = 0;
-		for (int x = 0; x < this->txt2->TextLength; x++) {
-			if (s[x] == '-') { counter++; }
-		}
-		if (counter < 1) {
-			this->txt2->Text += "-";
-		}
-		txt2->SelectionStart = txt2->Text->Length;
-	}
+	formatfunc(e, this->txt2);
 }
 private: System::Void txtResult_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // третье окно
 	if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8 && e->KeyChar != 44)
