@@ -55,6 +55,13 @@ namespace CppCLRWinformsProjekt {
 				txt->Text = "-0,";
 				txt->SelectionStart = txt->Text->Length;
 			}
+
+			if (txt->Text->Contains("00") && txt->TextLength == 2) {
+				txt->Clear();
+				txt->Text = "0";
+				txt->SelectionStart = txt->Text->Length;
+
+			}
 			
 
 		}
@@ -379,7 +386,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		double i1, i2;
 		// int i3;
 		this->lblOper->Text = L"Деление";
-		this->txtResult->Clear();
+		this->txtResult->Clear(); 
 		i1 = Convert::ToDouble(txt1->Text);
 		i2 = Convert::ToDouble(txt2->Text);
 		// i3 = i1 + i2;
@@ -431,6 +438,7 @@ private: System::Void BtnMin_Click(System::Object^ sender, System::EventArgs^ e)
 
 private: System::Void txt1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) { // первое окно
 	formatfunc(e, this->txt1);
+
 	
 	
 }
