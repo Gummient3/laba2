@@ -18,4 +18,5 @@ Class CppCLRWinformsProjekt.Form1: AutoLayout, AnsiClass, Class, Public, BeforeF
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
+    zeroFormat(TextBox): PrivateScope, Public, HideBySig
     formatfunc(KeyPressEventArgs, TextBox): PrivateScope, Public, HideBySig

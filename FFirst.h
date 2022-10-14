@@ -17,7 +17,12 @@ namespace CppCLRWinformsProjekt {
 	{
 	public:
 
-	
+		void zeroFormat(System::Windows::Forms::TextBox^ txt) {
+			if (txt->Text->Contains("00") && txt->TextLength == 2) {
+				txt->Text = "0";
+				txt->SelectionStart = txt->Text->Length;
+			}
+		}
 		void formatfunc(System::Windows::Forms::KeyPressEventArgs^ e, System::Windows::Forms::TextBox^ txt) {
 
 			if ((e->KeyChar <= 47 || e->KeyChar >= 58) && e->KeyChar != 8)
@@ -277,7 +282,7 @@ namespace CppCLRWinformsProjekt {
 			this->txt2->Size = System::Drawing::Size(90, 20);
 			this->txt2->TabIndex = 10;
 			this->txt2->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
-			this->txt2->TextChanged += gcnew System::EventHandler(this, &Form1::textBox2_TextChanged);
+			this->txt2->TextChanged += gcnew System::EventHandler(this, &Form1::txt2_text_changed);
 			this->txt2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Form1::txt2_KeyPress);
 			// 
 			// txtResult
@@ -396,15 +401,14 @@ private: System::Void txt1_text_changed(System::Object^ sender, System::EventArg
 		}
 	}
 	*/
-	if (this->txt1->Text->Contains("00") && this->txt1->TextLength == 2) {
-		this->txt1->Text = "0";
-		this->txt1->SelectionStart = this->txt1->Text->Length;
-	}
+
+	zeroFormat(this->txt1);
+	
 		
 	}
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void txt2_text_changed(System::Object^ sender, System::EventArgs^ e) {
 	
-	
+	zeroFormat(this->txt2);
 	
 
 }
