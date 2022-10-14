@@ -26,7 +26,7 @@ namespace CppCLRWinformsProjekt {
 			}
 			if (e->KeyChar == ',' && txt->TextLength == 0) {
 				txt->Text = "0,";
-				txt->SelectionStart = txt->Text->Length;
+				//txt->SelectionStart = txt->Text->Length;
 			}
 			if (e->KeyChar == ',') {
 				String^ s = txt->Text->ToString();
@@ -37,9 +37,41 @@ namespace CppCLRWinformsProjekt {
 				if (counter < 1) {
 					txt->Text += ",";
 				}
-				txt->SelectionStart = txt->Text->Length;
+				//txt->SelectionStart = txt->Text->Length;
 				
 			}
+			try {
+				if (txt->Text->ToString()[0] != '-' && txt->TextLength >= 1 && e->KeyChar == '-') {
+					txt->Text = "-" + txt->Text;
+					txt->SelectionStart = txt->Text->Length;
+
+
+				}
+				else if (txt->Text->ToString()[0] == '-' && txt->TextLength >= 1 && e->KeyChar == '-') {
+					String^ tmptxt = "";
+
+					for (int i = 1;;) {
+						tmptxt += txt->Text[i];
+						i++;
+						if (i == txt->TextLength) {
+							txt->Text = tmptxt;
+							break;
+						}
+					}
+					//txt->SelectionStart = txt->Text->Length;
+
+
+				}
+			}
+			catch (...) {
+
+			}
+
+			
+
+
+			
+
 			if (e->KeyChar == 45 && txt->TextLength == 0) {
 				String^ s = txt->Text->ToString();
 				int counter = 0;
@@ -49,20 +81,19 @@ namespace CppCLRWinformsProjekt {
 				if (counter < 1) {
 					txt->Text += "-";
 				}
-				txt->SelectionStart = txt->Text->Length;
+				//txt->SelectionStart = txt->Text->Length;
 			}
 			if (txt->Text == "-," && txt->TextLength == 2) {
 				txt->Text = "-0,";
-				txt->SelectionStart = txt->Text->Length;
+				//txt->SelectionStart = txt->Text->Length;
 			}
 
-			if (txt->Text->Contains("00") && txt->TextLength == 2) {
-				txt->Clear();
-				txt->Text = "0";
-				txt->SelectionStart = txt->Text->Length;
-
-			}
 			
+
+			
+
+			
+			txt->SelectionStart = txt->Text->Length;
 
 		}
 
@@ -204,7 +235,7 @@ namespace CppCLRWinformsProjekt {
 			this->txt1->Size = System::Drawing::Size(90, 20);
 			this->txt1->TabIndex = 4;
 			this->txt1->TextAlign = System::Windows::Forms::HorizontalAlignment::Right;
-			this->txt1->TextChanged += gcnew System::EventHandler(this, &Form1::lbl2_Click);
+			this->txt1->TextChanged += gcnew System::EventHandler(this, &Form1::txt1_text_changed);
 			this->txt1->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &Form1::txt1_KeyPress);
 			// 
 			// lbl1
@@ -227,7 +258,7 @@ namespace CppCLRWinformsProjekt {
 			this->lbl2->TabIndex = 8;
 			this->lbl2->Text = L"¬торое число:";
 			this->lbl2->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->lbl2->Click += gcnew System::EventHandler(this, &Form1::lbl2_Click);
+			this->lbl2->Click += gcnew System::EventHandler(this, &Form1::txt1_text_changed);
 			// 
 			// lblResult
 			// 
@@ -342,7 +373,7 @@ namespace CppCLRWinformsProjekt {
 
 		}
 		catch (...) {
-
+			this->txtResult->Text = "¬ведите число";
 		}
 		
 
@@ -351,13 +382,30 @@ namespace CppCLRWinformsProjekt {
 	}
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void lbl2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	if (this->txt2->Text->Contains("0") && this->txt2->TextLength == 1) {
-		this->txt2->Text = "0";
-		this->txt2->SelectionStart = this->txt2->Text->Length;
+private: System::Void txt1_text_changed(System::Object^ sender, System::EventArgs^ e) {
+	/*if (txt1->TextLength >= 3 && txt1->Text->ToString()[0] == '0' && txt1->Text->Contains(",")) {
+		String^ tmptxt = "";
+
+		for (int i = 1;;) {
+			tmptxt += txt1->Text[i];
+			i++;
+			if (i == txt1->TextLength) {
+				txt1->Text = tmptxt;
+				break;
+			}
+		}
 	}
+	*/
+	if (this->txt1->Text->Contains("00") && this->txt1->TextLength == 2) {
+		this->txt1->Text = "0";
+		this->txt1->SelectionStart = this->txt1->Text->Length;
+	}
+		
+	}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	
+	
+	
 
 }
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
@@ -373,7 +421,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 
 	}
 	catch (...) {
-		this->txtResult->Text = "vvedite 4islo";
+		this->txtResult->Text = "¬ведите число";
 
 	}
 
@@ -400,7 +448,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 		
 	}
 	catch (...) {
-
+		this->txtResult->Text = "¬ведите число";
 	}
 	
 
@@ -422,7 +470,7 @@ private: System::Void BtnMin_Click(System::Object^ sender, System::EventArgs^ e)
 		this->txtResult->Text = Convert::ToString(i1 - i2);
 	}
 	catch (...) {
-
+		this->txtResult->Text = "¬ведите число";
 	}
 	
 } /*
