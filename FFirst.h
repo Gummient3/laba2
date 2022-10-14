@@ -51,7 +51,11 @@ namespace CppCLRWinformsProjekt {
 				}
 				txt->SelectionStart = txt->Text->Length;
 			}
-
+			if (txt->Text == "-," && txt->TextLength == 2) {
+				txt->Text = "-0,";
+				txt->SelectionStart = txt->Text->Length;
+			}
+			
 
 		}
 
@@ -343,6 +347,11 @@ private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e)
 private: System::Void lbl2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	if (this->txt2->Text->Contains("0") && this->txt2->TextLength == 1) {
+		this->txt2->Text = "0";
+		this->txt2->SelectionStart = this->txt2->Text->Length;
+	}
+
 }
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	try {
@@ -357,6 +366,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 
 	}
 	catch (...) {
+		this->txtResult->Text = "vvedite 4islo";
 
 	}
 
