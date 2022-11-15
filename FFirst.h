@@ -151,6 +151,7 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::Button^ btnMult;
 	private: System::Windows::Forms::Button^ btnDvd;
 	private: System::Windows::Forms::Button^ BtnSub;
+private: System::Windows::Forms::Label^ label1;
 
 		   
 
@@ -190,6 +191,7 @@ namespace CppCLRWinformsProjekt {
 			this->btnMult = (gcnew System::Windows::Forms::Button());
 			this->btnDvd = (gcnew System::Windows::Forms::Button());
 			this->BtnSub = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// BtnCLose
@@ -325,11 +327,22 @@ namespace CppCLRWinformsProjekt {
 			this->BtnSub->UseVisualStyleBackColor = true;
 			this->BtnSub->Click += gcnew System::EventHandler(this, &Form1::BtnMin_Click);
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(75, 166);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(0, 20);
+			this->label1->TabIndex = 16;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(344, 244);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->BtnSub);
 			this->Controls->Add(this->btnDvd);
 			this->Controls->Add(this->btnMult);
@@ -358,7 +371,7 @@ namespace CppCLRWinformsProjekt {
 	}
 
 	private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) { //ресет
-
+		this->label1->Text = L"";
 		this->lblOper->Text = L"";
 		this->txt1->Text = L"";
 		this->txt2->Text = L"";
@@ -367,6 +380,7 @@ namespace CppCLRWinformsProjekt {
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) { // сложение
 		try {
+			this->label1->Text = "";
 			double i1, i2;
 			// int i3;
 			this->lblOper->Text = L"Сложение";
@@ -378,7 +392,7 @@ namespace CppCLRWinformsProjekt {
 
 		}
 		catch (...) {
-			this->txtResult->Text = "Введите число";
+			this->label1->Text = "Все поля должны\n быть заполнены";
 		}
 		
 
@@ -388,6 +402,11 @@ namespace CppCLRWinformsProjekt {
 private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void txt1_text_changed(System::Object^ sender, System::EventArgs^ e) {
+
+	if (txt1->Text == "") {
+		this->label1->Text = "";
+	}
+
 	/*if (txt1->TextLength >= 3 && txt1->Text->ToString()[0] == '0' && txt1->Text->Contains(",")) {
 		String^ tmptxt = "";
 
@@ -407,6 +426,9 @@ private: System::Void txt1_text_changed(System::Object^ sender, System::EventArg
 		
 	}
 private: System::Void txt2_text_changed(System::Object^ sender, System::EventArgs^ e) {
+	if (txt1->Text == "") {
+		this->label1->Text = "";
+	}
 	
 	zeroFormat(this->txt2);
 	
@@ -414,6 +436,7 @@ private: System::Void txt2_text_changed(System::Object^ sender, System::EventArg
 }
 private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	try {
+		this->label1->Text = "";
 		double i1, i2;
 		// int i3;
 		this->lblOper->Text = L"Умножение";
@@ -425,7 +448,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 
 	}
 	catch (...) {
-		this->txtResult->Text = "Введите число";
+		this->label1->Text = "Все поля должны\n быть заполнены";
 
 	}
 
@@ -435,6 +458,7 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
 
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
+		this->label1->Text = "";
 		double i1, i2;
 		// int i3;
 		this->lblOper->Text = L"Деление";
@@ -447,12 +471,12 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 
 		}
 		else {
-			this->txtResult->Text = "Ошибка";
+			this->label1->Text = "Ошибка, нельзя \nделить на ноль";
 		}
 		
 	}
 	catch (...) {
-		this->txtResult->Text = "Введите число";
+		this->label1->Text = "Все поля должны\n быть заполнены";
 	}
 	
 
@@ -464,6 +488,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void BtnMin_Click(System::Object^ sender, System::EventArgs^ e) { 
 	try {
+		this->label1->Text = "";
 		double i1, i2;
 		// int i3;
 		this->lblOper->Text = L"Вычитание";
@@ -474,7 +499,7 @@ private: System::Void BtnMin_Click(System::Object^ sender, System::EventArgs^ e)
 		this->txtResult->Text = Convert::ToString(i1 - i2);
 	}
 	catch (...) {
-		this->txtResult->Text = "Введите число";
+		this->label1->Text = "Все поля должны\n быть заполнены";
 	}
 	
 } /*
